@@ -15,14 +15,23 @@ function fetchCountries(e) {
   const url = `https://restcountries.com/v3.1/name/${countryName}`;
   fetch(url)
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data);
+      const country = data[0];
+      const langs = Object.values(data[0].languages).join(', ');
+      //   console.log('population: ', data[0].population);
+      //   console.log('name official: ', data[0].name.official);
+      //   console.log('capital: ', data[0].capital);
+      //   console.log('languages: ', data[0].languages);
+      infoDiv.innerHTML = `
+	  <p>name official: ${country.name.official}</p>
+	  <p>population: ${country.population}</p>
+	  <p>capital: ${country.capital}</p>
+	  <img width=320 src="${country.flags.svg}" alt ="${country.flags.alt}"/>
+	  <p>languages: ${langs}</p>
+		`;
+    })
     .catch(error => console.log(error));
-
-  console.log(data);
 }
-
-// function render(query) {
-//   console.log(query.capital);
-// }
 
 //sweden
