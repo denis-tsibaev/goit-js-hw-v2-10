@@ -19,10 +19,10 @@ function fetchCountries(e) {
       console.log(data);
       const country = data[0];
       const langs = Object.values(data[0].languages).join(', ');
-      //   console.log('population: ', data[0].population);
-      //   console.log('name official: ', data[0].name.official);
-      //   console.log('capital: ', data[0].capital);
-      //   console.log('languages: ', data[0].languages);
+      console.log('population: ', data[0].population);
+      console.log('name official: ', data[0].name.official);
+      console.log('capital: ', data[0].capital);
+      console.log('languages: ', data[0].languages);
       infoDiv.innerHTML = `
 	  <p>name official: ${country.name.official}</p>
 	  <p>population: ${country.population}</p>
