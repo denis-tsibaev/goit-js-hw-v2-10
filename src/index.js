@@ -33,7 +33,7 @@ function fetchCountries(e) {
         countryList.insertAdjacentHTML(
           'beforeend',
           `
-		 <li class= "item-list">
+		 <li class="item-list">
 		 	<img width=50 src="${country.flags.svg}" alt ="${country.flags.alt}"/>
 			<p class="country-name">${country.name.official}</p>
 		 </li> 
