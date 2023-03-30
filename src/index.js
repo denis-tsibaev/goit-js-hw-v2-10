@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 const debounce = require('lodash.debounce');
 import './css/styles.css';
 // import fetchCountries from './fetchCountries';
@@ -20,11 +21,20 @@ function fetchCountries(e) {
     .then(response => response.json())
     .then(data => {
       if (data.status === 404) {
-        alert('Некорректный запрос');
+        Notiflix.Notify.failure('Oops, there is no country with that name', {
+          fontSize: '20px',
+          width: '450px',
+        });
         return;
       }
       if (data.length > 10) {
-        alert('Слишком много вариантов. Делайте запрос точнее');
+        Notiflix.Notify.info(
+          'Too many matches found. Please enter a more specific name.',
+          {
+            fontSize: '20px',
+            width: '450px',
+          }
+        );
         return;
       }
       console.log(data);
@@ -49,7 +59,9 @@ function fetchCountries(e) {
 			<img width=200 src="${country.flags.svg}" alt ="${country.flags.alt}"/> 
 			<p class="title-name">${country.name.official}</p>
 			<p><span class="title-span">capital</span>: ${country.capital}</p>
-			<p><span class="title-span">population:</span> ${country.population}</p>
+			<p><span class="title-span">population:</span> ${country.population.toLocaleString(
+        'de-DE'
+      )}</p>
 			<p><span class="title-span">languages:</span> ${langs}</p>
 			`;
       }
